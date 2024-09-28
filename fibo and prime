@@ -1,0 +1,90 @@
+using System;
+
+namespace Practical1Di
+{
+    class Practical1d
+    {
+    
+        public void GenerateFibo(int n)
+        {
+            int num1 = 0;
+            int num2 = 1;
+
+            if (n >= 1) Console.WriteLine(num1);  
+            if (n >= 2) Console.WriteLine(num2);  
+
+            for (int i = 3; i <= n; i++)
+            {
+                int num3 = num1 + num2;
+                Console.WriteLine(num3);  
+                num1 = num2;
+                num2 = num3;
+            }
+        }
+
+       
+        public bool CheckPrime(int n)
+        {
+            if (n <= 1) return false;  
+
+            for (int i = 2; i <= n / 2; i++)  
+            {
+                if (n % i == 0)  
+                {
+                    return false;
+                }
+            }
+            return true;  
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Practical1d p1 = new Practical1d();
+
+            Console.WriteLine("1 Fibo");
+            Console.WriteLine("2 Prime Number");
+            Console.WriteLine("3 Vowels");
+            Console.WriteLine("4 Foreach");
+            Console.WriteLine("5 Reverse");
+            Console.WriteLine("6 Sum of Digits");
+            Console.WriteLine("Enter choice (1/2/3/4/5/6): ");
+
+            int choice = int.Parse(Console.ReadLine());
+            int n = 0;  
+
+            switch (choice)
+            {
+                case 1:
+                  
+                    Console.WriteLine("How many numbers in Fibonacci series?");
+                    n = int.Parse(Console.ReadLine());
+                    p1.GenerateFibo(n);
+                    break;
+
+                case 2:
+                  
+                    Console.Write("Enter Number: ");
+                    n = int.Parse(Console.ReadLine());
+                    bool isPrime = p1.CheckPrime(n);
+                    if (isPrime)
+                    {
+                        Console.WriteLine("Prime Number");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not a Prime Number");
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("Wrong Choice");
+                    break;
+            }
+
+            Console.ReadKey();  
+        }
+    }
+}
