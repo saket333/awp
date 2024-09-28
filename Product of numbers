@@ -1,0 +1,25 @@
+using System;
+
+namespace Practical1A
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int n1, n2, n3, n4, n5, prod;
+            Console.Write("Enter First Number:");
+            n1 = int.Parse(Console.ReadLine());
+            Console.Write("Enter Second Number:");
+            n2 = int.Parse(Console.ReadLine());
+            Console.Write("Enter Third Number:");
+            n3 = int.Parse(Console.ReadLine());
+            Console.Write("Enter Fourth Number:");
+            n4 = int.Parse(Console.ReadLine());
+            Console.Write("Enter Fifth Number:");
+            n5 = int.Parse(Console.ReadLine());
+            prod = n1 * n2 * n3 * n4 * n5;
+            Console.Write("The Product of above 5 numbers is = " + prod);
+            Console.ReadKey();
+        }
+    }
+}
