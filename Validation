@@ -1,3 +1,5 @@
+PLZ DONT SELECT EMPTY TEMPLATE 
+SELECT ONLYY WEB FORMS PLZZZ 
 Registration.aspx
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Registration.aspx.cs" Inherits="Validation.Registration" %>
 
