@@ -1,0 +1,71 @@
+WebForm1.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="Datalinkk.WebForm1" %>
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+           <asp:DataList ID="dlBooks" runat="server">
+    <ItemTemplate>
+        <div>
+            <strong>Title:</strong> <%# Eval("Title") %><br />
+            <strong>Author:</strong> <%# Eval("Author") %><br />
+            <strong>Price:</strong> <%# Eval("Price", "{0:C}") %><br /><br />
+        </div>
+    </ItemTemplate>
+</asp:DataList>
+
+
+        </div>
+    </form>
+</body>
+</html>
+
+WebForm1.aspx.cs
+using System;
+using System.Collections.Generic;
+using System.Web.UI;
+
+namespace Datalinkk
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+       
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                
+                BindDataList();
+            }
+        }
+
+       
+        private void BindDataList()
+        {
+            List<Book> books = new List<Book>
+            {
+                new Book { Title = "The Great Gatsby", Author = "F. Scott Fitzgerald", Price = 12.99m },
+                new Book { Title = "To Kill a Mockingbird", Author = "Harper Lee", Price = 14.99m },
+                new Book { Title = "1984", Author = "George Orwell", Price = 11.99m },
+                new Book { Title = "Pride and Prejudice", Author = "Jane Austen", Price = 9.99m }
+            };
+
+          
+            dlBooks.DataSource = books;
+            dlBooks.DataBind();
+        }
+    }
+
+   
+    public class Book
+    {
+        public string Title { get; set; }
+        public string Author { get; set; }
+        public decimal Price { get; set; }
+    }
+}
