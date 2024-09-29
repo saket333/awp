@@ -1,0 +1,80 @@
+WebForm1.aspx
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="treeview.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:TreeView ID="TreeView1" runat="server" ImageSet="WindowsHelp" OnSelectedNodeChanged="Treeview1_SelectedNodeChanged">
+                <HoverNodeStyle Font-Underline="True" ForeColor="#6666AA" />
+                <Nodes>
+                    <asp:TreeNode Text="AWP" Value="AWP">
+                        <asp:TreeNode Text="Practical" Value="Practical"></asp:TreeNode>
+                    </asp:TreeNode>
+                    <asp:TreeNode Text="EJ" Value="EJ"></asp:TreeNode>
+                </Nodes>
+                <NodeStyle Font-Names="Tahoma" Font-Size="8pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="1px" />
+                <ParentNodeStyle Font-Bold="False" />
+                <SelectedNodeStyle BackColor="#B5B5B5" Font-Underline="False" HorizontalPadding="0px" VerticalPadding="0px" />
+            </asp:TreeView>
+            <br />
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+            <br />
+            <br />
+            <br />
+            <asp:DataList ID="DataList1" runat="server" DataSourceID="XmlDataSource1">
+                <ItemTemplate>
+                    sid:
+                    <asp:Label ID="sidLabel" runat="server" Text='<%# Eval("sid") %>' />
+                    <br />
+                    sname:
+                    <asp:Label ID="snameLabel" runat="server" Text='<%# Eval("sname") %>' />
+                    <br />
+                    age:
+                    <asp:Label ID="ageLabel" runat="server" Text='<%# Eval("age") %>' />
+                    <br />
+<br />
+                </ItemTemplate>
+            </asp:DataList>
+            f<asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/XMLFile1.xml"></asp:XmlDataSource>
+        </div>
+    </form>
+</body>
+</html>
+
+
+WebForm1.aspx.cs
+using System;
+using System.Web.UI.WebControls;
+
+namespace treeview
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        // Event handler for when a node is selected in the TreeView
+        protected void Treeview1_SelectedNodeChanged(object sender, EventArgs e)
+        {
+            // Display the selected node's text in the Label
+            Label1.Text = "You selected: " + TreeView1.SelectedNode.Text;
+        }
+    }
+}
+
+
+XMLFile1.xml (for datalist)
+<?xml version="1.0" encoding="utf-8" ?>
+<students>
+	<student sid="67" sname="yogi" age="20"></student>
+	<student sid="68" sname="modi" age="20"></student>
+	<student sid="69" sname="raga" age="20"></student>
+</students>
