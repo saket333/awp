@@ -1,0 +1,88 @@
+using multiple;
+using System;
+namespace multiple
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Salary s = new Salary("Slim shady", 344000);
+            s.da = 20000;
+            s.ta = 30000;
+            s.dispSal();
+        }
+    }
+}
+Gross.cs
+    using System;
+namespace multiple
+{
+    interface Gross
+    {
+        int ta
+        {
+            get;
+            set;
+        }
+        int da
+        {
+            get;
+            set;
+        }
+        int GrossSal();
+    }
+}
+
+Employee.cs
+    using System;
+namespace multiple
+{
+    class Employee
+    {
+        string name;
+        public Employee(string name)
+        { this.name = name; }
+        public int BasicSal(int basicSal)
+        { return basicSal; }
+        public void ShowData()
+        {
+            Console.WriteLine("Name : " + name);
+        }
+    }
+}
+Salary.cs
+    using multiple;
+using System;
+namespace multiple
+{
+    class Salary : Employee, Gross
+    {
+        int hra;
+        public Salary(string name, int hra) : base(name)
+        { this.hra = hra; }
+        public int ta
+        {
+            get { return S_ta; }
+            set { S_ta = value; }
+        }
+        private int S_ta;
+        public int da
+        {
+            get { return S_da; }
+            set { S_da = value; }
+        }
+        private int S_da;
+        public int GrossSal()
+        {
+            int gSal;
+            gSal = hra + ta + da + BasicSal(15000);
+            return gSal;
+        }
+        public void dispSal()
+        {
+            base.ShowData();
+            Console.WriteLine("Gross Sal : " + GrossSal());
+        }
+    }
+}
+
