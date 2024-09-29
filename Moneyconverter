@@ -1,0 +1,125 @@
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="moneyconverter.WebForm1" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<title></title>
+</head>
+<body>
+<form id="form1" runat="server">
+<div>
+</div>
+<asp:Label ID="Label2" runat="server" Text="Enter Currency "></asp:Label>
+<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+<br />
+<asp:RadioButton ID="RadioButton1" runat="server" AutoPostBack="True" GroupName="C" OnCheckedChanged="RadioButton1_CheckedChanged" Text="Dollar to Rupee" />
+<asp:RadioButton ID="RadioButton2" runat="server" AutoPostBack="True" GroupName="C" OnCheckedChanged="RadioButton2_CheckedChanged" Text="Rupee to Dollar" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:RadioButton ID="RadioButton3" runat="server" AutoPostBack="True" GroupName="C" OnCheckedChanged="RadioButton3_CheckedChanged" Text="Euro to Rupee" />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<asp:RadioButton ID="RadioButton4" runat="server" AutoPostBack="True" GroupName="C" OnCheckedChanged="RadioButton4_CheckedChanged" Text="Rupee to Euro" />
+<br />
+<br />
+<br />
+<br />
+<br />
+</form>
+</body>
+</html>
+Webform1.aspxcs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+public class Class1
+{
+    public double r, e, d;
+
+    public Class1()
+    {
+        r = 0;
+        e = 0;
+        d = 0;
+    }
+
+    public void Convertdtor()
+    {
+        r = d * 78;
+    }
+
+    public void Convertetor()
+    {
+        r = e * 80;
+    }
+
+    public void Convertrtod()
+    {
+        d = r / 78;
+    }
+
+    public void Convertrtoe()
+    {
+        e = r / 80;
+    }
+}
+
+
+namespace moneyconverter
+{
+    public partial class WebForm1 : System.Web.UI.Page
+    {
+        private Class1 f1;
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            f1 = new Class1();
+        }
+
+        protected void RadioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton1.Checked)
+            {
+                f1.d = Convert.ToDouble(TextBox1.Text);
+                f1.Convertdtor();
+                Response.Write(f1.d + " Dollar = Rs." + f1.r);
+            }
+        }
+
+        protected void RadioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton2.Checked)
+            {
+                f1.r = Convert.ToDouble(TextBox1.Text);
+                f1.Convertrtod();
+                Response.Write(f1.r + " Rupee = $" + f1.d);
+            }
+        }
+
+        protected void RadioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton3.Checked)
+            {
+                f1.e = Convert.ToDouble(TextBox1.Text);
+                f1.Convertetor();
+                Response.Write(f1.e + " Euro = Rs." + f1.r);
+            }
+        }
+
+        protected void RadioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            if (RadioButton4.Checked)
+            {
+                f1.r = Convert.ToDouble(TextBox1.Text);
+                f1.Convertrtoe();
+                Response.Write(f1.r + " Rs = Euro " + f1.e);
+            }
+        }
+    }
+}
+
+
+
+
